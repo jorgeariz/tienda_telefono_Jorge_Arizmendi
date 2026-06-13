@@ -1,0 +1,552 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO PREMIUM (Negro Neo-Tecno + Azul Turquesa)
+   ========================================================================== */
+:root {
+    --bg-total: #08090d;          /* Fondo base ultra oscuro */
+    --bg-panel: rgba(17, 19, 26, 0.75); /* Gris azulado semi-transparente para efecto cristal */
+    --bg-sidebar: #0d0e12;        /* Negro integrado para la barra lateral */
+    --turquesa: #00f2fe;          /* Tono neón principal */
+    --turquesa-hover: #4facfe;    /* Degradado secundario */
+    --texto-brillante: #ffffff;   /* Títulos y textos principales */
+    --texto-gris: #8e929e;        /* Textos secundarios y descripciones */
+    --borde-sutil: rgba(255, 255, 255, 0.05); /* Líneas finas divisiorias de 1px */
+}
+
+/* ==========================================================================
+   CONFIGURACIÓN GENERAL (ACTUALIZADA CON FONDO INTENSO)
+   ========================================================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--bg-total); 
+    color: var(--texto-brillante);
+    min-height: 100vh;
+    display: flex;
+    position: relative; /* Necesario para que la capa del fondo se acomode bien */
+}
+
+/* Capa exclusiva para encender tu imagen de fondo ondas sin alterar tus textos */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/fondo_ondas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* CALIBRACIÓN EXACTA: Bajamos brillo y subimos contraste para rescatar el negro profundo */
+    filter: brightness(0.4) contrast(120%) saturate(100%); 
+    
+    z-index: -1;
+}
+
+/* ==========================================================================
+   BARRA LATERAL (Sidebar Estilizada y Fija) - ACTUALIZADA
+   ========================================================================== */
+.sidebar {
+    height: 100vh;
+    width: 300px; /* Incrementado de 260px a 300px para que no se vea estrecha */
+    background-color: var(--bg-sidebar); 
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 40px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--borde-sutil);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+.sidebar h2 {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    font-weight: 700; 
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 30px;
+    
+    /* Efecto de degradado premium idéntico a la pantalla de inicio */
+    background: linear-gradient(135deg, #ffffff 40%, var(--turquesa) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar a {
+    color: var(--texto-gris);
+    text-decoration: none;
+    padding: 14px 30px;
+    width: 100%;
+    text-align: left; 
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Línea indicadora interactiva a la izquierda */
+.sidebar a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--turquesa);
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+}
+
+.sidebar a:hover {
+    color: var(--turquesa);
+    background: linear-gradient(to right, rgba(0, 242, 254, 0.05), transparent);
+    padding-left: 35px; 
+}
+
+.sidebar a:hover::before {
+    transform: scaleY(1);
+}
+
+/* Botón 'Regresar' al final */
+.sidebar a[href="index.php"],
+.sidebar a.btn-regresar {
+    margin-top: auto; 
+    color: #ff5252;
+    font-weight: 600;
+    border-top: 1px solid var(--borde-sutil);
+    padding-top: 20px;
+}
+
+.sidebar a[href="index.php"]:hover,
+.sidebar a.btn-regresar:hover {
+    color: #ff7373;
+    background: linear-gradient(to right, rgba(255, 82, 82, 0.05), transparent);
+}
+
+.sidebar a[href="index.php"]::before,
+.sidebar a.btn-regresar::before {
+    background-color: #ff5252;
+}
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL - LIMPIO
+   ========================================================================== */
+.contenido-principal {
+    margin-left: 300px; 
+    padding: 40px;    
+    flex-grow: 1;       
+    min-height: 100vh;
+    box-sizing: border-box;
+    
+    /* Quitamos el background-image viejo para que se vea el fondo brillante de atrás */
+    background: transparent; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+/* ==========================================================================
+   PANEL FLOTANTE (Efecto Glassmorphism / Tarjeta 3D)
+   ========================================================================== */
+.main-card-panel {
+    background-color: var(--bg-panel);
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--borde-sutil);
+    border-radius: 24px; 
+    padding: 45px;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* Tipografías internas del panel flotante */
+.main-card-panel h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+    background: linear-gradient(to right, #ffffff, #a4a8b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.main-card-panel p {
+    color: var(--texto-gris);
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   TABLAS ESTILO DASHBOARD MODERNO
+   ========================================================================== */
+.contenedor-tabla {
+    width: 100%;
+    margin-top: 10px;
+    overflow-x: auto; 
+}
+
+.tabla-estilizada {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; 
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--borde-sutil);
+    border-radius: 12px;
+    overflow: hidden; 
+}
+
+.tabla-estilizada th {
+    color: var(--turquesa);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--borde-sutil);
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.tabla-estilizada td {
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #e3e5eb;
+    border-bottom: 1px solid var(--borde-sutil);
+}
+
+.tabla-estilizada tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-estilizada tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.tabla-estilizada tbody tr:hover {
+    background-color: rgba(0, 242, 254, 0.03);
+    transition: background-color 0.2s ease;
+}
+
+/* ==========================================================================
+   FORMULARIOS DE ENTRADA (Inputs, Selects y Fechas Optimizados)
+   ========================================================================== */
+input[type="text"], 
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 14px;
+    /* 1. INTERLINEADO: Cambiamos el margen superior/inferior para dar aire entre campos */
+    margin: 12px 0 28px 0; 
+    
+    /* 2. COLOR OSCURO INTEGRADO: Cambiamos el fondo a un gris oscuro translúcido */
+    background-color: rgba(20, 22, 31, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    
+    /* Color de texto claro para que contraste con el fondo oscuro */
+    color: var(--texto-brillante);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Quitamos el estilo por defecto del navegador en los selectores */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Espaciado extra para los contenedores de cada campo */
+.contenedor-form form > div {
+    margin-bottom: 8px; /* Refuerza la separación de bloques */
+}
+
+/* Estilo para las etiquetas de texto (Labels) */
+.contenedor-form label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto-gris);
+    letter-spacing: 0.3px;
+}
+
+/* Corrección vital para las opciones internas de los desplegables (Selects) */
+select option {
+    background-color: #11131a; /* Fondo oscuro al desplegar la lista */
+    color: #ffffff;
+}
+
+/* Modificación para el input de tipo fecha (icono del calendario en sutil) */
+input[type="date"]::-calendar-picker-indicator {
+    filter: invert(1); /* Convierte el icono de calendario negro a blanco */
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* Añadimos input[type="number"] a la regla global de campos */
+input[type="text"], 
+input[type="number"], /* <--- AGREGA ESTA LÍNEA */
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0 28px 0; 
+    background-color: rgba(20, 22, 31, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: var(--texto-brillante);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus, /* <--- TAMBIÉN AQUÍ PARA EL ENFOQUE TURQUESA */
+input[type="date"]:focus, 
+select:focus {
+    outline: none;
+    border-color: var(--turquesa);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+/* ==========================================================================
+   TÍTULO RESALTADO Y BOTÓN REESCALADO
+   ========================================================================== */
+
+/* 3. TÍTULO CON MÁS FUERZA */
+.main-card-panel h1 {
+    font-size: 2.8rem; /* Aumentado ligeramente de 2.4rem */
+    font-weight: 800;   /* Peso ultra-bold */
+    letter-spacing: -1px;
+    margin-bottom: 10px; /* Separación con el formulario */
+    
+    /* Degradado premium súper luminoso */
+    background: linear-gradient(135deg, #ffffff 30%, #a4a8b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* 4. BOTÓN REDIMENSIONADO (Más estilizado y menos tosco) */
+.btn-agregar {
+    display: inline-block;
+    padding: 10px 22px; /* Reducido el tamaño de la caja (antes 12px 28px) */
+    font-size: 13px;    /* Tipografía ligeramente más pequeña */
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    border-radius: 6px; /* Borde un poco más fino */
+    
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #08090d; 
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+    text-transform: uppercase;
+    width: auto; /* Mantiene su tamaño adaptado al texto, no gigante */
+}
+
+/* ==========================================================================
+   ANIMACIONES DE TRANSICIÓN PREMIUM
+   ========================================================================== */
+
+/* Animación por defecto cuando el panel aparece */
+.main-card-panel {
+    animation: fadeInForm 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+/* Clase que aplicaremos con JavaScript justo antes de cambiar de página */
+.main-card-panel.disappearing {
+    animation: fadeOutForm 0.3s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+@keyframes fadeInForm {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeOutForm {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.98);
+    }
+}
+
+/* ==========================================================================
+   ESTILOS PREMIUM PARA LA PANTALLA DE BIENVENIDA
+   ========================================================================== */
+
+/* 1. Recuperar el fondo general: Modificado para resaltar las ondas ocultas */
+.bienvenida-panel {
+    background: rgba(10, 12, 19, 0.35) !important; /* Más translúcido */
+    
+    /* Lupa de luz: aumenta el brillo de las ondas que pasan por detrás de la tarjeta */
+    backdrop-filter: blur(16px) saturate(220%) brightness(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(220%) brightness(1.4);
+    
+    border: 1px solid rgba(0, 242, 254, 0.22) !important; /* Borde turquesa más vivo */
+    
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 242, 254, 0.08),                 /* Aura exterior */
+        inset 0 0 25px rgba(0, 242, 254, 0.12) !important; /* Resplandor interno */
+        
+    text-align: center;
+    padding: 50px 40px;
+}
+
+/* 2. Título de Bienvenida con el Degradado de la pantalla de inicio */
+.titulo-bienvenida {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff 30%, var(--turquesa) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 15px rgba(0, 242, 254, 0.1);
+}
+
+/* 3. Subtítulo Forzado al Centro Magnético */
+.subtitulo-bienvenida {
+    display: block !important;             /* Fuerza a que actúe como un bloque independiente */
+    color: var(--texto-gris) !important;
+    font-size: 16px !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    /* margin: arriba auto abajo auto; El 'auto' en los lados es el que hace la magia de centrar */
+    margin: 0 auto 40px auto !important; 
+    margin-right: auto !important;         /* <--- ANULA EL MARGIN-RIGHT DE 320px QUE LO EMPUJABA */
+    line-height: 1.6 !important;
+    text-align: center !important;         /* Fuerza a que las letras se alineen al medio */
+}
+
+/* 4. Contenedor e Imagen Flotante */
+.contenedor-ilustracion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;                       
+}
+
+.img-bienvenida {
+    max-width: 670px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 25px rgba(0, 242, 254, 0.15));
+    animation: flotarIlustracion 4s ease-in-out infinite;
+    border-radius: 20px;
+}
+/* Animación de flotado suave para la imagen */
+@keyframes flotarIlustracion {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ==========================================================================
+   ESTILOS PREMIUM PARA COMPONENTES INTERNOS DE LISTADOS
+   ========================================================================== */
+
+/* Forzar que el título interno del listado herede el degradado */
+.main-card-panel .titulo-seccion {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0 0 15px 0;
+    background: linear-gradient(135deg, #ffffff 40%, var(--turquesa) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Alineación limpia de los botones dentro de la celda */
+.bloque-acciones-lista {
+    display: inline-flex;
+    gap: 8px;
+    vertical-align: middle;
+}
+
+/* Botón base compacto estilo 'Guardar Teléfono' */
+.btn-lista-premium {
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 14px; /* Tamaño pequeño/compacto original */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+/* Variante Editar: Idéntico al degradado e iluminación de tu botón de guardar */
+.btn-editar-neo {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #08090d; 
+    box-shadow: 0 4px 10px rgba(0, 242, 254, 0.25);
+}
+
+.btn-editar-neo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 242, 254, 0.45);
+    filter: brightness(1.1);
+}
+
+/* Variante Eliminar: Look premium pero adaptado en rojo neón */
+.btn-eliminar-neo {
+    background: linear-gradient(135deg, #ff5252 0%, #ff7373 100%);
+    color: #08090d; 
+    box-shadow: 0 4px 10px rgba(255, 82, 82, 0.25);
+}
+
+.btn-eliminar-neo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(255, 82, 82, 0.45);
+    filter: brightness(1.1);
+}

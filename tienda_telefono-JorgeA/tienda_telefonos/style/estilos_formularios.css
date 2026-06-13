@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0b0c10;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    padding-left: 10%; /* Espaciado desde la izquierda para el contenido */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Imagen de Fondo (Ocupa toda la pantalla) */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/fondo.jpg'); /* Tu archivo de imagen */
+    background-size: cover;
+    background-position: center right;
+    z-index: -2;
+}
+
+/* Capa de oscurecimiento (Mantiene el fondo atenuado para que resalte el texto) */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Un degradado sutil: más oscuro a la izquierda donde está el texto */
+    background: linear-gradient(90deg, #0b0c10 30%, rgba(11, 12, 16, 0.8) 70%, rgba(11, 12, 16, 0.5) 100%);
+    z-index: -1;
+}
+
+/* Contenedor del Formulario (Sin cuadro, solo define el ancho máximo) */
+.card {
+    width: 100%;
+    max-width: 480px; /* Un poco más angosto para que se vea más estilizado */
+    z-index: 10;
+    background: none; /* Quitamos el fondo completamente */
+    border: none;     /* Quitamos el borde */
+    box-shadow: none; /* Quitamos la sombra del cuadro */
+    padding: 0;       /* Quitamos el padding interno */
+}
+
+/* Estilo del Título Principal */
+.card h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 35px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.card h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #00f2fe, rgba(0, 242, 254, 0));
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* Formulario e Inputs */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: #00f2fe; /* Azul Turquesa */
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+/* El input sí conserva un fondo sutil para saber dónde escribir */
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 16px;
+    background-color: rgba(20, 23, 38, 0.7); /* Fondo oscuro semitransparente muy sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde gris muy suave */
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #00f2fe;
+    background-color: rgba(20, 23, 38, 0.9);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+/* Botones de Acción */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit {
+    background-color: #00f2fe;
+    color: #0b0c10;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+    flex: 2;
+}
+
+.btn-submit:hover {
+    background-color: #00b8c4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 242, 254, 0.5);
+}
+
+.btn-cancel {
+    background-color: #ff5e62;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 94, 98, 0.2);
+    flex: 1;
+}
+
+.btn-cancel:hover {
+    background-color: #e04448;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 94, 98, 0.4);
+}
+
+body {
+    overflow-y: auto !important; /* Permite hacer scroll hacia abajo si el formulario es largo */
+    padding-top: 40px;          /* Espacio arriba para que no pegue al techo */
+    padding-bottom: 40px;       /* Espacio abajo para que respiren los botones */
+}
+
